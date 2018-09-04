@@ -1,0 +1,226 @@
+﻿@model Sprint1AppDev3A.Models.Bookings
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bookings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ColStreetNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColStreetNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColStreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColStreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pickupdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pickupdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelStreetNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelStreetNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelStreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelStreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dropofdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dropofdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.clientname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clientname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cellnum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cellnum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specInstruct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specInstruct)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Assigned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assigned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.delcon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.delcon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colcon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colcon)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.testtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.testtext)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.two)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.two)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.finna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.finna)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Collection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Collection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dropoff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dropoff)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookingIds }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
