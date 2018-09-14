@@ -35,7 +35,7 @@ namespace Sprint1AppDev3A.Models
             [Required]
             [Display(Name = "Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+       
         public DateTime pickupdate { get; set; }
 
 
@@ -59,7 +59,7 @@ namespace Sprint1AppDev3A.Models
             [Required]
             [Display(Name = "Drop off Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        
         public DateTime dropofdate { get; set; }
 
 

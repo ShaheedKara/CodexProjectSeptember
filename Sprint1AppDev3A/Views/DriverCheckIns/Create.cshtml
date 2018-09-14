@@ -15,7 +15,7 @@
         <h4>DriverCheckIn</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+        <a href="~/Views/DriverCheckIns/Create.cshtml">~/Views/DriverCheckIns/Create.cshtml</a>
 
         
 
@@ -27,10 +27,13 @@
                  {
                       new { value = "Leaving Yard" , text = "Leaving Yard" },
                       new { value = "Reached Depot" , text = "Reached Depot"  },
+
                        new { value = "Loading Truck" , text = "Loading Truck" },
                       new { value = "Leaving Depot" , text = "Leaving Depot" },
                        new { value = "Reached Drop Off" , text = "Reached Drop Off" },
                         new { value = "Unloading Container" , text = "Unloading Container" },
+                        new { value = "Returning to Depot" , text = "Returning to Depot" },
+                        new { value = "Dropping off Container at Depot" , text = "Dropping off Container at Depot" },
                         new { value = "Returning to Yard" , text = "Returning to Yard" },
                          new { value = "In Yard", text = "In Yard" }
 

@@ -181,6 +181,9 @@
     <Compile Include="Controllers\AssignsController.cs" />
     <Compile Include="Controllers\Bookings1Controller.cs" />
     <Compile Include="Controllers\CalAmtsController.cs" />
+    <Compile Include="Controllers\DatesBookedDriversController.cs" />
+    <Compile Include="Controllers\DatesBookedTrailersController.cs" />
+    <Compile Include="Controllers\DatesBookedTrucksController.cs" />
     <Compile Include="Controllers\DriverCheckInsController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\ExpensesController.cs" />
@@ -190,6 +193,7 @@
     <Compile Include="Controllers\NewAssignsController.cs" />
     <Compile Include="Controllers\NewContainersController.cs" />
     <Compile Include="Controllers\NewDriversController.cs" />
+    <Compile Include="Controllers\NewNEWAssignsController.cs" />
     <Compile Include="Controllers\NewTrailersController.cs" />
     <Compile Include="Controllers\NewTrucksController.cs" />
     <Compile Include="Controllers\NewVmController.cs" />
@@ -205,6 +209,9 @@
     <Compile Include="Models\AssignViewModel.cs" />
     <Compile Include="Models\Bookings.cs" />
     <Compile Include="Models\CalAmt.cs" />
+    <Compile Include="Models\DatesBookedDriver.cs" />
+    <Compile Include="Models\DatesBookedTrailer.cs" />
+    <Compile Include="Models\DatesBookedTrucks.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverCheckIn.cs" />
     <Compile Include="Models\Expense.cs" />
@@ -214,10 +221,12 @@
     <Compile Include="Models\NewAssign.cs" />
     <Compile Include="Models\NewContainer.cs" />
     <Compile Include="Models\NewDriver.cs" />
+    <Compile Include="Models\NewNEWAssign.cs" />
     <Compile Include="Models\NewTrailer.cs" />
     <Compile Include="Models\NewTruck.cs" />
     <Compile Include="Models\Quotes.cs" />
     <Compile Include="Models\RateUs.cs" />
+    <Compile Include="Models\RestTimer.cs" />
     <Compile Include="Models\RFQ.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Models\UserRolesDTO.cs" />
@@ -422,6 +431,28 @@
     <Content Include="Views\NewAssigns\Details.cshtml" />
     <Content Include="Views\NewAssigns\Edit.cshtml" />
     <Content Include="Views\NewAssigns\Index.cshtml" />
+    <Content Include="Views\Bookings1\NewBooking.cshtml" />
+    <Content Include="Views\Bookings1\NewBooking2.cshtml" />
+    <Content Include="Views\NewNEWAssigns\Create.cshtml" />
+    <Content Include="Views\NewNEWAssigns\Delete.cshtml" />
+    <Content Include="Views\NewNEWAssigns\Details.cshtml" />
+    <Content Include="Views\NewNEWAssigns\Edit.cshtml" />
+    <Content Include="Views\NewNEWAssigns\Index.cshtml" />
+    <Content Include="Views\DatesBookedDrivers\Create.cshtml" />
+    <Content Include="Views\DatesBookedDrivers\Delete.cshtml" />
+    <Content Include="Views\DatesBookedDrivers\Details.cshtml" />
+    <Content Include="Views\DatesBookedDrivers\Edit.cshtml" />
+    <Content Include="Views\DatesBookedDrivers\Index.cshtml" />
+    <Content Include="Views\DatesBookedTrailers\Create.cshtml" />
+    <Content Include="Views\DatesBookedTrailers\Delete.cshtml" />
+    <Content Include="Views\DatesBookedTrailers\Details.cshtml" />
+    <Content Include="Views\DatesBookedTrailers\Edit.cshtml" />
+    <Content Include="Views\DatesBookedTrailers\Index.cshtml" />
+    <Content Include="Views\DatesBookedTrucks\Create.cshtml" />
+    <Content Include="Views\DatesBookedTrucks\Delete.cshtml" />
+    <Content Include="Views\DatesBookedTrucks\Details.cshtml" />
+    <Content Include="Views\DatesBookedTrucks\Edit.cshtml" />
+    <Content Include="Views\DatesBookedTrucks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

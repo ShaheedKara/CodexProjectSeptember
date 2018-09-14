@@ -10,107 +10,112 @@ using Sprint1AppDev3A.Models;
 
 namespace Sprint1AppDev3A.Controllers
 {
-    public class NewContainersController : Controller
+    public class DatesBookedTrailersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: NewContainersC:\Users\Appa Kara\Desktop\Appdev project Files\Sha Shed\sprint3-2ND DEPLOY\Deploy Version\Sprint1AppDev3A\Controllers\NewContainersController.cs
+        // GET: DatesBookedTrailers
         public ActionResult Index()
         {
-            return View(db.NewContainers.ToList());
+            var datesBookedTrailers = db.DatesBookedTrailers.Include(d => d.TrailerId);
+            return View(datesBookedTrailers.ToList());
         }
 
-        // GET: NewContainers/Details/5
+        // GET: DatesBookedTrailers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewContainer newContainer = db.NewContainers.Find(id);
-            if (newContainer == null)
+            DatesBookedTrailer datesBookedTrailer = db.DatesBookedTrailers.Find(id);
+            if (datesBookedTrailer == null)
             {
                 return HttpNotFound();
             }
-            return View(newContainer);
+            return View(datesBookedTrailer);
         }
 
-        // GET: NewContainers/Create
+        // GET: DatesBookedTrailers/Create
         public ActionResult Create()
         {
+            ViewBag.TrailID = new SelectList(db.NewTrailers, "TrailerId", "reg");
             return View();
         }
 
-        // POST: NewContainers/Create
+        // POST: DatesBookedTrailers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContainerID,ContainerNumber,ContainerSize,Status,Location,Destination,PickUp,DeadLine,ActualDropOff")] NewContainer newContainer)
+        public ActionResult Create([Bind(Include = "TraiKey,TrailID,PickUpDate,DropOffDate")] DatesBookedTrailer datesBookedTrailer)
         {
             if (ModelState.IsValid)
             {
-                db.NewContainers.Add(newContainer);
+                db.DatesBookedTrailers.Add(datesBookedTrailer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(newContainer);
+            ViewBag.TrailID = new SelectList(db.NewTrailers, "TrailerId", "reg", datesBookedTrailer.TrailID);
+            return View(datesBookedTrailer);
         }
 
-        // GET: NewContainers/Edit/5
+        // GET: DatesBookedTrailers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewContainer newContainer = db.NewContainers.Find(id);
-            if (newContainer == null)
+            DatesBookedTrailer datesBookedTrailer = db.DatesBookedTrailers.Find(id);
+            if (datesBookedTrailer == null)
             {
                 return HttpNotFound();
             }
-            return View(newContainer);
+            ViewBag.TrailID = new SelectList(db.NewTrailers, "TrailerId", "reg", datesBookedTrailer.TrailID);
+            return View(datesBookedTrailer);
         }
 
-        // POST: NewContainers/Edit/5
+        // POST: DatesBookedTrailers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContainerID,ContainerNumber,ContainerSize,Status,Location,Destination,PickUp,DeadLine,ActualDropOff")] NewContainer newContainer)
+        public ActionResult Edit([Bind(Include = "TraiKey,TrailID,PickUpDate,DropOffDate")] DatesBookedTrailer datesBookedTrailer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newContainer).State = EntityState.Modified;
+                db.Entry(datesBookedTrailer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(newContainer);
+            ViewBag.TrailID = new SelectList(db.NewTrailers, "TrailerId", "reg", datesBookedTrailer.TrailID);
+            return View(datesBookedTrailer);
         }
 
-        // GET: NewContainers/Delete/5
+        // GET: DatesBookedTrailers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewContainer newContainer = db.NewContainers.Find(id);
-            if (newContainer == null)
+            DatesBookedTrailer datesBookedTrailer = db.DatesBookedTrailers.Find(id);
+            if (datesBookedTrailer == null)
             {
                 return HttpNotFound();
             }
-            return View(newContainer);
+            return View(datesBookedTrailer);
         }
 
-        // POST: NewContainers/Delete/5
+        // POST: DatesBookedTrailers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewContainer newContainer = db.NewContainers.Find(id);
-            db.NewContainers.Remove(newContainer);
+            DatesBookedTrailer datesBookedTrailer = db.DatesBookedTrailers.Find(id);
+            db.DatesBookedTrailers.Remove(datesBookedTrailer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -11,7 +11,7 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.ColStreetNum)
         </th>
         <th>
@@ -19,7 +19,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ColArea)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.ColCity)
         </th>
@@ -29,7 +29,7 @@
         <th>
             @Html.DisplayNameFor(model => model.pickupdate)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.DelStreetNum)
         </th>
         <th>
@@ -37,7 +37,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DelArea)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.DelCity)
         </th>
@@ -75,14 +75,14 @@
             @Html.DisplayNameFor(model => model.colcon)
         </th>
         <th>*@
-            @Html.DisplayNameFor(model => model.testtext)
+            @*@Html.DisplayNameFor(model => model.testtext)*@
         @*</th>
         <th>
             @Html.DisplayNameFor(model => model.two)
         </th>*@
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.finna)
-        </th>
+        </th>*@
         @*<th>
             @Html.DisplayNameFor(model => model.Collection)
         </th>
@@ -94,7 +94,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.ColStreetNum)
         </td>
         <td>
@@ -102,7 +102,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ColArea)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.ColCity)
         </td>
@@ -111,7 +111,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.pickupdate)
-        </td>
+        @*</td>
         <td>
             @Html.DisplayFor(modelItem => item.DelStreetNum)
         </td>
@@ -120,7 +120,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DelArea)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.DelCity)
         </td>
@@ -157,15 +157,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.colcon)
         </td>*@
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.testtext)
-        </td>
+        </td>*@
         @*<td>
             @Html.DisplayFor(modelItem => item.two)
         </td>*@
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.finna)
-        </td>
+        </td>*@
         @*<td>
             @Html.DisplayFor(modelItem => item.Collection)
         </td>

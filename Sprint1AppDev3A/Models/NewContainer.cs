@@ -18,8 +18,10 @@ namespace Sprint1AppDev3A.Models
         public string Status { get; set; }
         public string Location { get; set; }
         public string Destination { get; set; }
-        public string PickUp { get; set; }
-        public string DeadLine { get; set; }
+        public DateTime PickUp { get; set; }
+        public DateTime PickUpTime { get; set; }
+        public string Priority { get; set; }
+
 
 
 

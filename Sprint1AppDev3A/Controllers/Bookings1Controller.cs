@@ -32,6 +32,10 @@ namespace Sprint1AppDev3A.Controllers
         {
             return View(db.Bookings.ToList());
         }
+        public ActionResult NewBooking2()
+        {
+            return View();
+        }
 
 
         // GET: Bookings1/Details/5
@@ -82,8 +86,8 @@ namespace Sprint1AppDev3A.Controllers
                 obj.ContainerID = bookings.BookingIds;
                 obj.ContainerNumber = bookings.ConNum;
                 obj.ContainerSize = bookings.ConType;
-                obj.DeadLine = bookings.dropofdate.ToString();
-                obj.PickUp = bookings.pickupdate.ToString();
+               
+                obj.PickUp = bookings.pickupdate;
                 obj.Location = bookings.ColCity;
                 obj.Destination = bookings.DelCity;
                 obj.Status = "UnAssigned";

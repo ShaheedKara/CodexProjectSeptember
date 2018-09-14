@@ -57,56 +57,54 @@ namespace Sprint1AppDev3A.Controllers
 
                 var Cont = db.NewContainers.Find(newAssign.ContID);
 
-                newAssign.ContainerSize = Cont.ContainerSize;
-                newAssign.ContainerNumber = Cont.ContainerNumber;
-                newAssign.Location = Cont.Location;
-                newAssign.DeadLine = Cont.DeadLine;
-                newAssign.PickUp = Cont.PickUp;
-                newAssign.Destination = Cont.Destination;
+                //newAssign.ContainerSize = Cont.ContainerSize;
+                //newAssign.ContainerNumber = Cont.ContainerNumber;
+                //newAssign.Location = Cont.Location;
+                //newAssign.DeadLine = Cont.DeadLine;
+                //newAssign.PickUp = Cont.PickUp;
+                //newAssign.Destination = Cont.Destination;
+                //newAssign.PickUpTime = Cont.PickUpTime;
+                //newAssign.DropOffTime = Cont.DropoffTime;
+                //newAssign.EstTime = Cont.DropoffTime;
 
                 if (Cont != null)
                 {
+                    int flag = 0;
                     try
                     {
-                        var TrailList = db.NewTrailers.Where(x => x.TrailerSize == Cont.ContainerSize
-                                                                            && x.Status == "StandBy"
-                                                                            && x.Location == Cont.Location).ToList();
+                        do
+                        {
+                            var TrailList = db.NewTrailers.Where(x => x.TrailerSize == Cont.ContainerSize
+                                                                                && x.Status == "StandBy"
+                                                                                && x.Location == Cont.Location).ToList();
+                                                                                
 
-                        var Trail = TrailList.First();
-                        newAssign.Trailer = Trail.reg;
-                        Trail.Status = "Booked";
-                        Trail.Destination = newAssign.Destination;
-                    }
-                    catch (Exception)
-                    {
+                            var Trail = TrailList.First();
+                            newAssign.Trailer = Trail.reg;
+                            Trail.Status = "Booked";
+                            Trail.Destination = newAssign.Destination;
 
-                        throw;
-                    }
-                    try
-                    {
-                        var TruckList = db.NewTrucks.Where(x => x.Location == Cont.Location
-                                                                        && x.Status == "StandBy").ToList();
+                            var TruckList = db.NewTrucks.Where(x => x.Location == Cont.Location
+                                                                            && x.Status == "StandBy").ToList();
 
-                        var Truc = TruckList.First();
-                        newAssign.Truck = Truc.reg;
-                        Truc.Status = "Booked";
-                        Truc.Destination = newAssign.Destination;
-                    }
-                    catch (Exception)
-                    {
+                            var Truc = TruckList.First();
+                            newAssign.Truck = Truc.reg;
+                            Truc.Status = "Booked";
+                            Truc.Destination = newAssign.Destination;
 
-                        throw;
-                    }
-                    try
-                    {
-                        var DriverList = db.NewDrivers.Where(x => x.DriverLocation == Cont.Location
-                                                                        && x.DriverStatus == "StandBy").ToList();
 
-                        var Drive = DriverList.First();
-                        newAssign.Driver = Drive.Email;
-                        newAssign.Driverid = Drive.DriverId.ToString();
-                        Drive.DriverStatus = "Booked";
-                        Drive.DriverDestination = newAssign.Destination;
+                            var DriverList = db.NewDrivers.Where(x => x.DriverLocation == Cont.Location
+                                                                            && x.DriverStatus == "StandBy").ToList();
+
+                            var Drive = DriverList.First();
+                            newAssign.Driver = Drive.Email;
+                            newAssign.Driverid = Drive.DriverId.ToString();
+                            Drive.DriverStatus = "Booked";
+                            Drive.DriverDestination = newAssign.Destination;
+
+                            newAssign.EstTime = newAssign.EstTime.AddDays(1);
+
+                        } while (flag != 3);
                     }
                     catch (Exception)
                     {

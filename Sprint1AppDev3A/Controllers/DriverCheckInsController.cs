@@ -67,7 +67,7 @@ namespace Sprint1AppDev3A.Controllers
                 driverCheckIn.job = CurrJob.AssignCode;
 
                 var Drive = db.NewDrivers.Where(x => x.Email == CurrJob.Driver).First();
-                var Trial = db.NewTrucks.Where(x => x.reg == CurrJob.Trailer).First();
+                var Trial = db.NewTrailers.Where(x => x.reg == CurrJob.Trailer).First();
                 var Truc= db.NewTrucks.Where(x => x.reg == CurrJob.Truck).First();
                 var cont = db.NewContainers.Where(x => x.ContainerNumber == CurrJob.ContainerNumber).First();
                 var book = db.Bookings.Where(x => x.ConNum == cont.ContainerNumber).First();
@@ -105,12 +105,17 @@ namespace Sprint1AppDev3A.Controllers
 
                 if (driverCheckIn.Status== "In Yard")
                 {
-                    Drive.DriverStatus = "Resting";
+                    Drive.DriverStatus = "StandBy";
+                   
                     Trial.Status = "StandBy";
                     Truc.Status = "StandBy";
                     Drive.DriverLocation = "Durban";
                     Trial.Location = "Durban";
                     Truc.Location = "Durban";
+
+                    Drive.DriverDestination = "";
+                    Trial.Destination = "";
+                    Truc.Destination = "";  
                 }
                
                

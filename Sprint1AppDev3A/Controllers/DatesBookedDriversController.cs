@@ -10,107 +10,112 @@ using Sprint1AppDev3A.Models;
 
 namespace Sprint1AppDev3A.Controllers
 {
-    public class NewContainersController : Controller
+    public class DatesBookedDriversController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: NewContainersC:\Users\Appa Kara\Desktop\Appdev project Files\Sha Shed\sprint3-2ND DEPLOY\Deploy Version\Sprint1AppDev3A\Controllers\NewContainersController.cs
+        // GET: DatesBookedDrivers
         public ActionResult Index()
         {
-            return View(db.NewContainers.ToList());
+            var datesBookedDrivers = db.DatesBookedDrivers.Include(d => d.NewDrivers);
+            return View(datesBookedDrivers.ToList());
         }
 
-        // GET: NewContainers/Details/5
+        // GET: DatesBookedDrivers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewContainer newContainer = db.NewContainers.Find(id);
-            if (newContainer == null)
+            DatesBookedDriver datesBookedDriver = db.DatesBookedDrivers.Find(id);
+            if (datesBookedDriver == null)
             {
                 return HttpNotFound();
             }
-            return View(newContainer);
+            return View(datesBookedDriver);
         }
 
-        // GET: NewContainers/Create
+        // GET: DatesBookedDrivers/Create
         public ActionResult Create()
         {
+            ViewBag.DriveID = new SelectList(db.NewDrivers, "DriverId", "Id");
             return View();
         }
 
-        // POST: NewContainers/Create
+        // POST: DatesBookedDrivers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContainerID,ContainerNumber,ContainerSize,Status,Location,Destination,PickUp,DeadLine,ActualDropOff")] NewContainer newContainer)
+        public ActionResult Create([Bind(Include = "DriKey,DriveID,PickUpDate,DropOffDate")] DatesBookedDriver datesBookedDriver)
         {
             if (ModelState.IsValid)
             {
-                db.NewContainers.Add(newContainer);
+                db.DatesBookedDrivers.Add(datesBookedDriver);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(newContainer);
+            ViewBag.DriveID = new SelectList(db.NewDrivers, "DriverId", "Id", datesBookedDriver.DriveID);
+            return View(datesBookedDriver);
         }
 
-        // GET: NewContainers/Edit/5
+        // GET: DatesBookedDrivers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewContainer newContainer = db.NewContainers.Find(id);
-            if (newContainer == null)
+            DatesBookedDriver datesBookedDriver = db.DatesBookedDrivers.Find(id);
+            if (datesBookedDriver == null)
             {
                 return HttpNotFound();
             }
-            return View(newContainer);
+            ViewBag.DriveID = new SelectList(db.NewDrivers, "DriverId", "Id", datesBookedDriver.DriveID);
+            return View(datesBookedDriver);
         }
 
-        // POST: NewContainers/Edit/5
+        // POST: DatesBookedDrivers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContainerID,ContainerNumber,ContainerSize,Status,Location,Destination,PickUp,DeadLine,ActualDropOff")] NewContainer newContainer)
+        public ActionResult Edit([Bind(Include = "DriKey,DriveID,PickUpDate,DropOffDate")] DatesBookedDriver datesBookedDriver)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newContainer).State = EntityState.Modified;
+                db.Entry(datesBookedDriver).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(newContainer);
+            ViewBag.DriveID = new SelectList(db.NewDrivers, "DriverId", "Id", datesBookedDriver.DriveID);
+            return View(datesBookedDriver);
         }
 
-        // GET: NewContainers/Delete/5
+        // GET: DatesBookedDrivers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewContainer newContainer = db.NewContainers.Find(id);
-            if (newContainer == null)
+            DatesBookedDriver datesBookedDriver = db.DatesBookedDrivers.Find(id);
+            if (datesBookedDriver == null)
             {
                 return HttpNotFound();
             }
-            return View(newContainer);
+            return View(datesBookedDriver);
         }
 
-        // POST: NewContainers/Delete/5
+        // POST: DatesBookedDrivers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewContainer newContainer = db.NewContainers.Find(id);
-            db.NewContainers.Remove(newContainer);
+            DatesBookedDriver datesBookedDriver = db.DatesBookedDrivers.Find(id);
+            db.DatesBookedDrivers.Remove(datesBookedDriver);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

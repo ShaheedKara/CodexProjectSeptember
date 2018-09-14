@@ -21,7 +21,7 @@ namespace Sprint1AppDev3A.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("NewDeployDB6", throwIfV1Schema: false)//DBContext5
+            : base("NewDeployDB7", throwIfV1Schema: false)//DBContext5
         {
         }
 
@@ -59,5 +59,13 @@ namespace Sprint1AppDev3A.Models
         public System.Data.Entity.DbSet<Sprint1AppDev3A.Models.NewDriver> NewDrivers { get; set; }
 
         public System.Data.Entity.DbSet<Sprint1AppDev3A.Models.NewAssign> NewAssigns { get; set; }
+
+        public System.Data.Entity.DbSet<Sprint1AppDev3A.Models.NewNEWAssign> NewNEWAssigns { get; set; }
+
+        public System.Data.Entity.DbSet<Sprint1AppDev3A.Models.DatesBookedDriver> DatesBookedDrivers { get; set; }
+
+        public System.Data.Entity.DbSet<Sprint1AppDev3A.Models.DatesBookedTrailer> DatesBookedTrailers { get; set; }
+
+        public System.Data.Entity.DbSet<Sprint1AppDev3A.Models.DatesBookedTrucks> DatesBookedTrucks { get; set; }
     }
 }
