@@ -64,42 +64,151 @@ namespace Sprint1AppDev3A.Controllers
                         var FreeDri = db.DatesBookedDrivers.Where(x=>x.PickUpDate != newNEWAssign.SelectedDate).ToList();
                         var FreeTru = db.DatesBookedTrucks.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
                         var FreeTra = db.DatesBookedTrailers.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
-                        
-                       
 
                         foreach (var item in Priority1)
                         {
-                                try
-                                        {
-                                            var Pri1 = Priority1.Where(x => x.Status == "UnAssigned").First();
-                                            var Dri = FreeDri.Where(x=>x.PickUpDate != newNEWAssign.SelectedDate).First();
-                                            var DriverYeah = db.NewDrivers.Find(Dri.DriveID);                                            
+                        if (FreeDri != null && FreeTra != null && FreeTru !=null)
+                        {
+                            try
+                            {
+                                var Pri1 = Priority1.Where(x => x.Status == "UnAssigned").First();
+                                var Dri = FreeDri.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                var DriverYeah = db.NewDrivers.Find(Dri.DriveID);
+                                var Tru = FreeTru.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                var TruckYeah = db.NewTrucks.Find(Dri.DriveID);
+                                var Tra = FreeTra.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                var TrailerYeah = db.NewTrailers.Find(Dri.DriveID);
 
-                                            NewNEWAssign obj = new NewNEWAssign();
-                                            obj.AssignID = Pri1.ContainerID;
-                                            obj.PickUpDate = Pri1.PickUp;
-                                            obj.PickUpTime = Pri1.PickUpTime;
-                                            obj.ContainerNumber = Pri1.ContainerNumber;
-                                            obj.ContainerSize = Pri1.ContainerSize;
-                                            obj.Driver = DriverYeah.Email;
+                                NewNEWAssign obj = new NewNEWAssign();
+                                obj.AssignID = Pri1.ContainerID;
+                                obj.PickUpDate = Pri1.PickUp;
+                                obj.PickUpTime = Pri1.PickUpTime;
+                                obj.ContainerNumber = Pri1.ContainerNumber;
+                                obj.ContainerSize = Pri1.ContainerSize;
+                                obj.Location = Pri1.Location;
+                                obj.Destination = Pri1.Destination;
 
-                                            Pri1.Status = "Pending";
-
-                                        }
-                                catch (Exception)
-                                        {
-
+                                ////////
+                                ////////
                             
-                                        }
-                            
+                                obj.Driver = DriverYeah.Email;
+                                obj.Trailer = TrailerYeah.reg;
+                                obj.Truck = TruckYeah.reg;
+                               
+
+                                Pri1.Status = "Pending";
+                                Dri.PickUpDate = newNEWAssign.SelectedDate;
+                                Tra.PickUpDate = newNEWAssign.SelectedDate;
+                                Tru.PickUpDate = newNEWAssign.SelectedDate;
+
+                            }
+                            catch (Exception)
+                            {
 
 
-                      
+                            }
+                        }
                         }
 
-                       
+                    if (FreeDri!=null && FreeTra!=null && FreeTru!=null)
+                    {
+                        foreach (var item in Priority2)
+                        {
+                            if (FreeDri != null && FreeTra != null && FreeTru != null)
+                            {
+                                try
+                                {
+                                    var Pri2 = Priority2.Where(x => x.Status == "UnAssigned").First();
+                                    var Dri = FreeDri.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                    var DriverYeah = db.NewDrivers.Find(Dri.DriveID);
+                                    var Tru = FreeTru.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                    var TruckYeah = db.NewTrucks.Find(Dri.DriveID);
+                                    var Tra = FreeTra.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                    var TrailerYeah = db.NewTrailers.Find(Dri.DriveID);
 
-                       
+                                    NewNEWAssign obj = new NewNEWAssign();
+                                    obj.AssignID = Pri2.ContainerID;
+                                    obj.PickUpDate = Pri2.PickUp;
+                                    obj.PickUpTime = Pri2.PickUpTime;
+                                    obj.ContainerNumber = Pri2.ContainerNumber;
+                                    obj.ContainerSize = Pri2.ContainerSize;
+                                    obj.Location = Pri2.Location;
+                                    obj.Destination = Pri2.Destination;
+
+                                    ////////
+                                    ////////
+
+                                    obj.Driver = DriverYeah.Email;
+                                    obj.Trailer = TrailerYeah.reg;
+                                    obj.Truck = TruckYeah.reg;
+
+
+                                    Pri2.Status = "Pending";
+                                    Dri.PickUpDate = newNEWAssign.SelectedDate;
+                                    Tra.PickUpDate = newNEWAssign.SelectedDate;
+                                    Tru.PickUpDate = newNEWAssign.SelectedDate;
+
+                                }
+                                catch (Exception)
+                                {
+
+
+                                }
+                            }
+                        }
+                    }
+
+                    if (FreeDri != null && FreeTra != null && FreeTru != null)
+                    {
+                        foreach (var item in Priority3)
+                        {
+                            if (FreeDri != null && FreeTra != null && FreeTru != null)
+                            {
+                                try
+                                {
+                                    var Pri3 = Priority3.Where(x => x.Status == "UnAssigned").First();
+                                    var Dri = FreeDri.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                    var DriverYeah = db.NewDrivers.Find(Dri.DriveID);
+                                    var Tru = FreeTru.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                    var TruckYeah = db.NewTrucks.Find(Dri.DriveID);
+                                    var Tra = FreeTra.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).First();
+                                    var TrailerYeah = db.NewTrailers.Find(Dri.DriveID);
+
+                                    NewNEWAssign obj = new NewNEWAssign();
+                                    obj.AssignID = Pri3.ContainerID;
+                                    obj.PickUpDate = Pri3.PickUp;
+                                    obj.PickUpTime = Pri3.PickUpTime;
+                                    obj.ContainerNumber = Pri3.ContainerNumber;
+                                    obj.ContainerSize = Pri3.ContainerSize;
+                                    obj.Location = Pri3.Location;
+                                    obj.Destination = Pri3.Destination;
+
+                                    ////////
+                                    ////////
+
+                                    obj.Driver = DriverYeah.Email;
+                                    obj.Trailer = TrailerYeah.reg;
+                                    obj.Truck = TruckYeah.reg;
+
+
+                                    Pri3.Status = "Pending";
+                                    Dri.PickUpDate = newNEWAssign.SelectedDate;
+                                    Tra.PickUpDate = newNEWAssign.SelectedDate;
+                                    Tru.PickUpDate = newNEWAssign.SelectedDate;
+
+                                }
+                                catch (Exception)
+                                {
+
+
+                                }
+                            }
+                        }
+                    }
+
+
+
+
 
 
                 } while (true);
