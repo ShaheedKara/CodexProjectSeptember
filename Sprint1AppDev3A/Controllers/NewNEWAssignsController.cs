@@ -54,20 +54,20 @@ namespace Sprint1AppDev3A.Controllers
             {
                 do
                 {
-                   
-                        var containers = db.NewContainers.Where(x=>x.Status == "UnAssigned" && x.PickUp == newNEWAssign.SelectedDate).ToList();
 
-                        var Priority1 = containers.Where(x => x.Priority == "High").ToList();
-                        var Priority2 = containers.Where(x => x.Priority == "Medium").ToList();
-                        var Priority3 = containers.Where(x => x.Priority == "Low").ToList();
+                    var containers = db.NewContainers.Where(x => x.Status == "UnAssigned" && x.PickUp == newNEWAssign.SelectedDate).ToList();
 
-                        var FreeDri = db.DatesBookedDrivers.Where(x=>x.PickUpDate != newNEWAssign.SelectedDate).ToList();
-                        var FreeTru = db.DatesBookedTrucks.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
-                        var FreeTra = db.DatesBookedTrailers.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
+                    var Priority1 = containers.Where(x => x.Priority == "High").ToList();
+                    var Priority2 = containers.Where(x => x.Priority == "Medium").ToList();
+                    var Priority3 = containers.Where(x => x.Priority == "Low").ToList();
 
-                        foreach (var item in Priority1)
-                        {
-                        if (FreeDri != null && FreeTra != null && FreeTru !=null)
+                    var FreeDri = db.DatesBookedDrivers.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
+                    var FreeTru = db.DatesBookedTrucks.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
+                    var FreeTra = db.DatesBookedTrailers.Where(x => x.PickUpDate != newNEWAssign.SelectedDate).ToList();
+
+                    foreach (var item in Priority1)
+                    {
+                        if (FreeDri != null && FreeTra != null && FreeTru != null)
                         {
                             try
                             {
@@ -90,11 +90,11 @@ namespace Sprint1AppDev3A.Controllers
 
                                 ////////
                                 ////////
-                            
+
                                 obj.Driver = DriverYeah.Email;
                                 obj.Trailer = TrailerYeah.reg;
                                 obj.Truck = TruckYeah.reg;
-                               
+
 
                                 Pri1.Status = "Pending";
                                 Dri.PickUpDate = newNEWAssign.SelectedDate;
@@ -108,10 +108,19 @@ namespace Sprint1AppDev3A.Controllers
 
                             }
                         }
-                        }
+                        else
+                        {
+                            foreach (var item1 in Priority1)
+                            {
+                                var Pri1 = Priority1.Where(x => x.Status == "UnAssigned" && x.PickUp == newNEWAssign.SelectedDate).First();
+                                Pri1.PickUp = Pri1.PickUp.AddDays(1);
 
-                    if (FreeDri!=null && FreeTra!=null && FreeTru!=null)
-                    {
+                            }
+
+                        }
+                    }
+
+                   
                         foreach (var item in Priority2)
                         {
                             if (FreeDri != null && FreeTra != null && FreeTru != null)
@@ -155,12 +164,20 @@ namespace Sprint1AppDev3A.Controllers
 
                                 }
                             }
+                        else
+                        {
+                            foreach (var item2 in Priority2)
+                            {
+                                var Pri2 = Priority2.Where(x => x.Status == "UnAssigned" && x.PickUp == newNEWAssign.SelectedDate).First();
+                                Pri2.PickUp = Pri2.PickUp.AddDays(1);
+
+                            }
+
                         }
                     }
+                    
 
-                    if (FreeDri != null && FreeTra != null && FreeTru != null)
-                    {
-                        foreach (var item in Priority3)
+                      foreach (var item in Priority3)
                         {
                             if (FreeDri != null && FreeTra != null && FreeTru != null)
                             {
@@ -203,15 +220,26 @@ namespace Sprint1AppDev3A.Controllers
 
                                 }
                             }
+                        else
+                        {
+                            foreach (var item3 in Priority3)
+                            {
+                                var Pri3 = Priority3.Where(x => x.Status == "UnAssigned" && x.PickUp == newNEWAssign.SelectedDate).First();
+                                Pri3.PickUp = Pri3.PickUp.AddDays(1);
+
+                            }
+
                         }
+
                     }
+                   
 
 
 
 
+            
 
-
-                } while (true);
+                } while (true);//FreeDri != null && FreeTra != null && FreeTru != null);
 
 
 
