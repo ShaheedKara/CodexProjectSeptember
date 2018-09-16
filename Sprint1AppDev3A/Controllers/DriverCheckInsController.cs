@@ -90,9 +90,9 @@ namespace Sprint1AppDev3A.Controllers
 
                 if (driverCheckIn.Status=="Reached Depot")
                 {
-                    Drive.DriverLocation = book.ColCity;
-                    Trial.Location = book.ColCity;
-                    Truc.Location = book.ColCity;
+                    //Drive.DriverLocation = book.ColCity;
+                    //Trial.Location = book.ColCity;
+                    //Truc.Location = book.ColCity;
                 }
                 if (driverCheckIn.Status == "Reached Drop Off")
                 {

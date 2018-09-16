@@ -17,7 +17,7 @@ namespace Sprint1AppDev3A.Controllers
         // GET: DatesBookedTrailers
         public ActionResult Index()
         {
-            var datesBookedTrailers = db.DatesBookedTrailers.Include(d => d.TrailerId);
+            var datesBookedTrailers = db.DatesBookedTrailers.Include(d => d.TrailID);
             return View(datesBookedTrailers.ToList());
         }
 

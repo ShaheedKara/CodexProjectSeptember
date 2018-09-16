@@ -52,8 +52,7 @@ namespace Sprint1AppDev3A.Controllers
         {
             if (ModelState.IsValid)
             {
-                do
-                {
+                
 
                     var containers = db.NewContainers.Where(x => x.Status == "UnAssigned" && x.PickUp == newNEWAssign.SelectedDate).ToList();
 
@@ -239,7 +238,7 @@ namespace Sprint1AppDev3A.Controllers
 
             
 
-                } while (true);//FreeDri != null && FreeTra != null && FreeTru != null);
+               
 
 
 

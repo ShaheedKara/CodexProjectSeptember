@@ -4,18 +4,37 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create a Booking</h2>
+
 <div>
-    Travel To : <input id="Collection" type="text" name="name" />
-    <input id="Dropoff" type="text" name="name" value="Coastlands Durban Pty Ltd, Doctor Pixley Kaseme Street, Durban, South Africa" readonly hidden />
+
+    @*<input id="Dropoff" type="text" name="name" value="Coastlands Durban Pty Ltd, Doctor Pixley Kaseme Street, Durban, South Africa" readonly hidden />*@
     <br /><br><br />
-    @*<b>Depots:  </b> <br>
 
-        <select multiple id="waypoints">
-            <option value="Umbilo, durban">Umbilo</option>
-            <option value="phoenix, durban">Phoenix</option>
+    <b>Depots:  </b> <br>
 
+    @*<select multiple id="Collection">
+        <option value="53 ettrick road bluff">bluff</option>
+        <option value="phoenix, durban">Phoenix</option>
         </select>*@
+
+    @*</select>
+        <div>
+            Travel from : <input id="Collection" type="text" name="name" />
+        </div>*@
+    <b>Start:</b>
+    <select id="Collection">
+        <option value="Shipping & General Transport Services Pty Ltd, 61 Grunter Gully St, Bayhead, Durban">Shipping & General Transport Services</option>
+        <option value="Oilco Durban, 45 Leeds Rd, Umbilo Industrial, Durban, 4075">Oilco Durban</option>
+        <option value="Durban Deliveries, 72 Magwaza Maphalala St, Congela, Durban, 4001">Durban Deliveries</option>
+        <option value="IMPERIAL LOGISTICS, 01 Davey Rd, Maydon Wharf, Durban, 2934">IMPERIAL LOGISTICs</option>
+        <option value="UNITRANS FREIGHT & LOGISTICS, 144 Umhlatuzana Rd, Sea View, Durban, 4094">UNITRANS FREIGHT & LOGISTICS</option>
+
+    </select>
+    <div>
+        Travel to : <input id="Dropoff" type="text" name="name" />
+    </div>
+
 
     <div>
         <input type="button" value="Request Pickup" id="GetRoute" name="GetRoute" onclick="GetRoute()" />
@@ -51,7 +70,7 @@
 
         // initialise the location of the map on Chichester in England (ref lat and lng)
         var map = new google.maps.Map(document.getElementById('dvMap'), {
-            center: { lat: -29.856628, lng: 31.036852 },
+            center: { lat: -29.856628, lng: 31.036852},
             zoom: 13,
             mapTypeId: 'roadmap'
         });
@@ -63,12 +82,14 @@
             directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
         });
 
-        function GetRoute() {
+        function GetRoute()
+        {
 
             directionsDisplay.setMap(map);
 
             source = document.getElementById("Collection").value;
             destination = document.getElementById("Dropoff").value;
+
             //var waypts = [];
             //var checkboxArray = document.getElementById('waypoints');
 
@@ -82,8 +103,8 @@
             var request = {
                 origin: source,
                 destination: destination,
-                // waypoints: waypts,
-                // optimizeWaypoints: true,
+               // waypoints: waypts,
+               // optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode.DRIVING
             };
 
@@ -118,8 +139,8 @@
                     data = JSON.stringify({
                         distance: distance,
                         'source': source,
-                        'finacharger': 0,
-                        'destination': "Coastlands Durban Pty Ltd, Doctor Pixley Kaseme Street, Durban, South Africa"
+                        'finacharger':0,
+                        'destination':"Coastlands Durban Pty Ltd, Doctor Pixley Kaseme Street, Durban, South Africa"
                     });
 
                     $.ajax({
@@ -129,7 +150,7 @@
                         success: function (data) {
                             alert(data)
                         },
-                        contentType: 'application/json'
+                        contentType:'application/json'
                     });
 
                 } else {
@@ -140,124 +161,50 @@
 
     </script>
 
+    <h2>Create</h2>
+
+
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Bookings</h4>
-            <hr />
-        </div>
-        <div class="form-horizontal">
-            <h4>Pick-Up Details </h4>
+            <h4>Booking</h4>
             <hr />
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.ColStreetNum, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ColStreetNum, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ColStreetNum, "", new { @class = "text-danger"  })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ColStreetName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ColStreetName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ColStreetName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ColArea, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ColArea, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ColArea, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ColCity, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ColCity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ColCity, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ColCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ColCode, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ColCode, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
                 @Html.LabelFor(model => model.pickupdate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.pickupdate, new { htmlAttributes = new { @class = "form-control" }])
+                    @Html.EditorFor(model => model.pickupdate, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.pickupdate, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
 
-        <div class="form-horizontal">
-            <h4>Delivery Details</h4>
-            <hr />
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DelStreetNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.dropofdate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DelStreetNum, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DelStreetNum, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.dropofdate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dropofdate, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.DelStreetName, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.dropCity, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DelStreetName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DelStreetName, "", new { @class = "text-danger" })
+                    @Html.DropDownList("dropCity", new List<SelectListItem>
+                    {
+                    new SelectListItem {Value = "Durban", Text = "Durban"},
+                    new SelectListItem {Value = "Cape Town", Text = "Cape Town"},
+                    new SelectListItem {Value = "Johannesburg", Text = "Johannesburg"},
+
+
+
+                    }, "Select Drop off City:")
+                    @Html.ValidationMessageFor(model => model.dropCity, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.DelArea, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DelArea, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DelArea, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DelCity, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DelCity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DelCity, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DelCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DelCode, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DelCode, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.dropofdate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dropofdate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dropofdate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-horizontal">
-            <h4>Client Details</h4>
-            <hr />
             <div class="form-group">
                 @Html.LabelFor(model => model.clientname, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -293,59 +240,49 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ConType, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.ConType, new List<SelectListItem>
-                        {
+                    @Html.DropDownList("ConType", new List<SelectListItem>
+                    {
+                    new SelectListItem {Value = "Refrigderated ISO", Text = "Refrigderated ISO"},
+                    new SelectListItem {Value = "Tank", Text = "Tank"},
+                    new SelectListItem {Value = "Dry Container", Text = "Dry Container"},
 
-                        new SelectListItem {Value = "6m",Text = "6m" },
-                        new SelectListItem {Value = "12m",Text = "12m" },
 
-                        }, "Select Container Type")
+
+                    }, "Select Container Type Required:")
                     @Html.ValidationMessageFor(model => model.ConType, "", new { @class = "text-danger" })
                 </div>
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Size", new List<SelectListItem>
+                    {
+                    new SelectListItem {Value = "6m", Text = "6m"},
+                   new SelectListItem {Value = "12m", Text = "12m"},
+
+
+
+                   }, "Select Size:")
+                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.specInstruct, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.specInstruct, new List<SelectListItem>
-                        {
-                        new SelectListItem {Value = "None", Text = "None"},
-                        new SelectListItem {Value = "Fragile", Text = "Fragile"},
-                        new SelectListItem {Value = "Temperature Sensitive", Text = "Temperature Sensitive"},
-                        new SelectListItem {Value = "Hazardous",Text = "Hazardous" },
-                        new SelectListItem {Value = "Other",Text = "Other" },
+                    @Html.DropDownList("specInstruct", new List<SelectListItem>
+                    {
+                    new SelectListItem {Value = "Fragile", Text = "Fragile"},
+                    new SelectListItem {Value = "Hazardous", Text = "Hazardous"},
+                    new SelectListItem {Value = "NONE", Text = "NONE"},
+                    new SelectListItem {Value = "Perishables", Text = "Perishables"},
 
-                        }, "Special Instruction")
+
+                                }, "Select Special Instruction:")
                     @Html.ValidationMessageFor(model => model.specInstruct, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.Assigned, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.Assigned)
-                            @Html.ValidationMessageFor(model => model.Assigned, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.delcon, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.delcon, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.delcon, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.colcon, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.colcon, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.colcon, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
             @*<div class="form-group">
                     @Html.LabelFor(model => model.testtext, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -353,9 +290,9 @@
                         @Html.EditorFor(model => model.testtext, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.testtext, "", new { @class = "text-danger" })
                     </div>
-                </div>*@
+                </div>
 
-            @*<div class="form-group">
+                <div class="form-group">
                     @Html.LabelFor(model => model.two, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.two, new { htmlAttributes = new { @class = "form-control" } })
@@ -364,14 +301,22 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.finna, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Distance, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.finna, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.finna, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Distance, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Distance, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
+                    @Html.LabelFor(model => model.final, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.final, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.final, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
                     @Html.LabelFor(model => model.Collection, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Collection, new { htmlAttributes = new { @class = "form-control" } })
@@ -386,9 +331,25 @@
                         @Html.ValidationMessageFor(model => model.Dropoff, "", new { @class = "text-danger" })
                     </div>
                 </div>*@
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.priorty, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.priorty, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.priorty, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
             <div>
-                <input id="testtext" type="text" name="testtext" />
+                <input id="testtext" type="text" name="testtext" readonly hidden />
             </div>
+            @*<div>
+                    Travel To : <input id="Collection" type="text" name="name" />
+                </div>
+                <div>
+                    Travel from : <input id="Dropoff" type="text" name="name" />
+                </div>*@
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -397,29 +358,7 @@
             </div>
         </div>
     }
-
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker6').datetimepicker({
-                minDate: new Date()
-            });
-            $('#datetimepicker7').datetimepicker({
-                useCurrent: false //Important! See issue #1075
-            });
-            $("#datetimepicker6").on("dp.change", function (e) {
-                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-            });
-            $("#datetimepicker7").on("dp.change", function (e) {
-                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-            });
-        });
-    </script>
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
 }
-
-

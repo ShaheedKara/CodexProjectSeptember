@@ -86,10 +86,10 @@ namespace Sprint1AppDev3A.Controllers
                 obj.ContainerID = bookings.BookingIds;
                 obj.ContainerNumber = bookings.ConNum;
                 obj.ContainerSize = bookings.ConType;
-               
+                obj.Priority = bookings.priorty;
                 obj.PickUp = bookings.pickupdate;
-                obj.Location = bookings.ColCity;
-                obj.Destination = bookings.DelCity;
+                obj.Location = bookings.Collection;
+                obj.Destination = bookings.Dropoff;
                 obj.Status = "UnAssigned";
 
 
@@ -97,7 +97,7 @@ namespace Sprint1AppDev3A.Controllers
                 
                 
 
-                bookings.genRef();
+               
                 var s = db.CalAmts.Where(x => x.id == 1);
                 var s1 = db.Vats.Where(x => x.ID == 1);
 
@@ -114,7 +114,7 @@ namespace Sprint1AppDev3A.Controllers
                 bookings.two = Convert.ToDouble(neww, CultureInfo.InvariantCulture);
                 bookings.two = Math.Round(bookings.two);
 
-                bookings.finna = (f * bookings.two * (rate / 100));
+                
 
                 db.NewContainers.Add(obj);
                 db.SaveChanges();

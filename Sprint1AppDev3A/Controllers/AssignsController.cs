@@ -40,7 +40,7 @@ namespace Sprint1AppDev3A.Controllers
         // GET: Assigns/Create
         public ActionResult Create()
         {
-            ViewBag.BookID = new SelectList(db.Bookings.Where(x => x.Assigned == false), "BookingIds", "ConNum");
+         //   ViewBag.BookID = new SelectList(db.Bookings.Where(x => x.Assigned == false), "BookingIds", "ConNum");
             ViewBag.DriveID = new SelectList(db.Drivers.Where(x => x.DriAvailable == true), "DriverId", "DriverFullName");
             ViewBag.TrucksID = new SelectList(db.Trucks.Where(x => x.Available == true ), "TruckId", "reg");
 
@@ -53,12 +53,12 @@ namespace Sprint1AppDev3A.Controllers
 
             return Json(TruckList, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult CascadeCont(string TrailerSelect)
-        {
-            db.Configuration.ProxyCreationEnabled = true;
-            List<Bookings> ContList = db.Bookings.Where(x => x.ConType == TrailerSelect && x.Assigned == (false)).ToList();
-            return Json(ContList, JsonRequestBehavior.AllowGet);
-        }
+        //public ActionResult CascadeCont(string TrailerSelect)
+        //{
+        //    db.Configuration.ProxyCreationEnabled = true;
+        //  //  List<Bookings> ContList = db.Bookings.Where(x => x.ConType == TrailerSelect && x.Assigned == (false)).ToList();
+        // //   return Json(ContList, JsonRequestBehavior.AllowGet);
+        //}
 
         // POST: Assigns/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -70,7 +70,7 @@ namespace Sprint1AppDev3A.Controllers
             if (ModelState.IsValid)
             {
                 var Book = db.Bookings.Find(assign.BookID);
-                Book.Assigned = true;
+             //   Book.Assigned = true;
                 var Driv = db.Drivers.Find(assign.DriveID);
                 Driv.DriAvailable = false;
                 var Truc = db.Trucks.Find(assign.TrucksID);
